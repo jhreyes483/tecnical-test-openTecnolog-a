@@ -11,6 +11,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try{
+            $this->logIngreso();
             $user = User::where('email', $request->email)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response()->json([

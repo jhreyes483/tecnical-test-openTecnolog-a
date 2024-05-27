@@ -1,6 +1,6 @@
 export const config ={
-    //base_url : 'https://laravel-app-api.fly.dev/',
-    base_url : 'http://127.0.0.1:8000/',
+    base_url : 'https://laravel-app-api.fly.dev/',
+    //base_url : 'http://127.0.0.1:8000/',
     htmlEntities: function(str: any) {
         return String(str).replace('&ntilde;', 'ñ')
                           .replace('&Ntilde;', 'Ñ')

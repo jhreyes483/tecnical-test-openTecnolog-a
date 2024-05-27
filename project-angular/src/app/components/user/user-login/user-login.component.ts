@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
-import { User } from '../../../models/user/login'; 
+import { User } from '../../../models/user/login';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -17,27 +17,35 @@ export class UserLoginComponent {
   public isSubmit;
   public isLoader;
   constructor(
-    private _userService : UserService,
+    private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router,
-  ){
+  ) {
 
-    this.status   = '';
+    this.status = '';
     this.isSubmit = false;
     this.isLoader = false;
-    this.user = new User('','');
+    this.user = new User('', '');
   }
 
-  onSubmit(form :any){
+  showCredentialsAlert() {
+    Swal.fire({
+      title: 'Credenciales Públicas de Ingreso',
+      html: '<p>Correo: jav-rn@hotmail.com</p><p>Contraseña: password</p> ',
+      icon: 'info'
+    });
+  }
+
+  onSubmit(form: any) {
     this.isSubmit = true;
     this.isLoader = true;
     this._userService.login(this.user).then(response => {
       response = response.data;
       console.log(response.data);
 
-      if (response.status && response.status==="success") {
+      if (response.status && response.status === "success") {
         this.isLoader = false;
-        this._userService.autLocalStorage(response.authorisation.token, response.user );
+        this._userService.autLocalStorage(response.authorisation.token, response.user);
         this._router.navigate([this._userService.routeHome]);
         Swal.fire({
           icon: 'success',
@@ -64,7 +72,7 @@ export class UserLoginComponent {
       });
       this.isLoader = false; // Asegúrate de detener el loader en caso de error
 
-});
+    });
 
   }
 }
