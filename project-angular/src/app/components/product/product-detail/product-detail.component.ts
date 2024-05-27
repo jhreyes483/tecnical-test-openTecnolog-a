@@ -147,5 +147,6 @@ export class ProductDetailComponent {
     console.log('onSave', this.product)
 
   }
+  
 
 }

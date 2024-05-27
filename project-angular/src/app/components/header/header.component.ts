@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements DoCheck {
   public checkToken : any;
   public entity : any;
+  public isMenuOpen = false;
 
   constructor(
     private _userService : UserService,
@@ -35,6 +36,11 @@ export class HeaderComponent implements DoCheck {
       text: 'Cerro sesión'
     });
   }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  
 
 
 

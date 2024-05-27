@@ -96,7 +96,6 @@ export class ProductMainComponent implements OnInit {
         this.currentPage = response.products.current_page;
         this.lastPage    = response.products.last_page;
       } else {
-        // Muestra una alerta con SweetAlert2 si hay un error
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -105,7 +104,6 @@ export class ProductMainComponent implements OnInit {
       }
       response = response.data;
     }).catch(error => {
-      // Muestra una alerta con SweetAlert2 si hay un error en la solicitud
       Swal.fire({
         icon: 'error',
         title: 'Error',
