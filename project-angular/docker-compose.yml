@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.loc
+    ports:
+      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
+    volumes:
+      - ./src:/app/src  # Monta el directorio src del host en el directorio src del contenedor (para desarrollo)
