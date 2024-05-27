@@ -11,7 +11,7 @@
 
 
 ### Iniciar proyecto laravel
-- crear db pruebas
+- crear db con nombre prueba
 - npm i
 - php artisan key:generate
 - php artisan migrate
