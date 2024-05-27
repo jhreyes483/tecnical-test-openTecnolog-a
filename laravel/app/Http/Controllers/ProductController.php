@@ -30,11 +30,13 @@ class ProductController extends Controller
             $u    = $request->input('u');
 
             if ($q) {
+                $page = 1;
                 $products = $products->where(function ($query) use ($q) {
                     $query->where('name', 'LIKE', '%' . $q . '%');
                 });
             }
             if ($u) {
+                $page = 1;
                 $products = $products->where(function ($query) use ($u) {
                     $query->where('user_creator', 'id', $u);
                 });
