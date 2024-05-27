@@ -13,8 +13,8 @@ export class ProductMainComponent implements OnInit {
   public users: any
   public currentPage: any;
   public lastPage: any;
-  public isLoader : any;
-  public dataSearch : any;
+  public isLoader: any;
+  public dataSearch: any;
 
   constructor(
     private _productService: ProductService,
@@ -22,21 +22,21 @@ export class ProductMainComponent implements OnInit {
     private _router: Router,
   ) {
     this.isLoader = false;
-    this.dataSearch = { q: null, page : 1 }
+    this.dataSearch = { q: null, page: 1 }
   }
 
   ngOnInit() {
     this.getProducts();
   }
 
-  changePage(page : any){
+  changePage(page: any) {
     this.dataSearch.page = page;
     this.getProducts()
   }
 
-  redirectToProduct(id : any , caseCrud : any){
-    let route :any =[];
-    switch(caseCrud){
+  redirectToProduct(id: any, caseCrud: any) {
+    let route: any = [];
+    switch (caseCrud) {
       case 'c': route = ['product/create']; break;
       case 'd': route = ['product/detail', id]; break;
       case 'e': route = ['product/edition', id]; break;
@@ -45,37 +45,44 @@ export class ProductMainComponent implements OnInit {
   }
 
 
-  deleteProduct(id : any){
-    this._productService.deleteProduct(id).then(response => {
-      response = response.data;
-      if (response.status) {
-        this.getProducts();
-        Swal.fire({
-          icon: 'success',
-          title: 'Ok',
-          text: 'Elimino producto'
-        });
-
-      } else {
-        // Muestra una alerta con SweetAlert2 si hay un error
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Hubo un error al elimino producto. Por favor, inténtelo de nuevo más tarde.'
-        });
+  deleteProduct(id: any) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminarlo',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._productService.deleteProduct(id)
+          .then(response => {
+            response = response.data;
+            if (response.status) {
+              this.getProducts();
+              Swal.fire({
+                icon: 'success',
+                title: 'Producto eliminado',
+                text: 'El producto ha sido eliminado correctamente'
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error al intentar eliminar el producto'
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error al eliminar producto:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un error al intentar eliminar el producto'
+            });
+          });
       }
-      response = response.data;
-    }).catch(error => {
-      // Muestra una alerta con SweetAlert2 si hay un error en la solicitud
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Hubo un error al elimino producto. Por favor, inténtelo de nuevo más tarde.'
-      });
-      this.isLoader = false; // Asegúrate de detener el loader en caso de error
     });
-
-    console.log('delete id->',id);
   }
 
   getProducts() {

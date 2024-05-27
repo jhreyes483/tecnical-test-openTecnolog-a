@@ -1,5 +1,5 @@
 input:disabled {
-    background-color: #f3efeb; /* Cambia el color de fondo */
-    color: #201f1f !important; /* Cambia el color del texto */
-    border-color: #fc811d; /* Cambia el color del borde */
+    background-color: #f3efeb; 
+    color: #201f1f !important;
+    border-color: #fc811d;
 }
