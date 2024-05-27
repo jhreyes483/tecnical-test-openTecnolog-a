@@ -1,0 +1,43 @@
+
+.card {
+    border-radius: .5em;
+}
+
+.card-green {
+    background-color: #fff9f4;
+}
+
+.btm-green {
+    background-color: #ff7f00 !important;
+    color: #fff;
+}
+
+.f-r {
+    position: absolute;
+    right: 0;
+
+}
+
+.container-butons {
+    display: flex;
+}
+
+.btn-permanent {
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 1em;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fas {
+    font-size: 17px;
+}
+
+
+.highlighted-row {
+    background-color:#f5dbf5 !important;
+}

@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  mysql1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql1
+    ports:
+      - "${DB1_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB1_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB1_DATABASE}
+      MYSQL_USER: ${DB1_USER}
+      MYSQL_PASSWORD: ${DB1_PASSWORD}
+    networks:
+      - my_network
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    command: redis-server --databases 1
+    networks:
+      - my_network
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    external:
+      name: my_network

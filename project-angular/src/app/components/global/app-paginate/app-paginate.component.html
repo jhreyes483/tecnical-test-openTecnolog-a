@@ -1,0 +1,9 @@
+<div>
+    <button class="btn btn-sm btn-light" (click)="previousPage()" [disabled]="currentPage === 1">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    {{ currentPage }}
+    <button class="btn btn-sm btn-light " (click)="nextPage()" [disabled]="currentPage === lastPage">
+        <i class="fas fa-arrow-right"></i>
+    </button>
+</div>

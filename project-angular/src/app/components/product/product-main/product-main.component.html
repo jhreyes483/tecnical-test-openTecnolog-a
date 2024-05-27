@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div class=" mt-4 col-md-9 mx-auto mb-4">
+        <h2>Productos</h2>
+        <div class=" card  card-body card-green m-4 shadow-sm mx-auto">
+            <div class="row col-md-12">
+                <div class="col-md-3 mb-3 ">
+                    <label for="users">Nombre producto</label>
+                    <input [(ngModel)]="dataSearch.q" type="text" name="q" class="form-control"
+                        placeholder="Buscar por nombre">
+                </div>
+                <div class="col-md-6 mb-3 mt-3">
+                    <button (click)="getProducts()" class="btn btm-green mt-3 ml-1">Buscar<i class="p-1 fas fa-search"></i></button>
+                    <button (click)="redirectToProduct(0, 'c')" class="btn btm-green mt-3 ml-1">Crear <i class="p-1 fas fa-plus"></i></button>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isLoader">
+        <div class="loader-overlay">
+            <div class="loader">
+                <div class="circle"></div>
+            </div>
+            <div class="loading-text">Cargando.</div>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoader" class="table-responsive card card-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th class="text-center">Stock</th>
+                    <th>Creado por</th>
+                    <th>Actualizado por</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.created_by.name }}</td>
+                    <td>{{ product.created_by.name }}</td>
+                    <td class="container-butons">
+                        <button (click)="redirectToProduct(product.id, 'd')" class="btn btn-info  btn-permanent"><i
+                                class="fas fa-eye"></i></button>
+                        <button (click)="redirectToProduct(product.id, 'e')" class="btn btn-warning  btn-permanent"><i
+                                class="fas fa-edit"></i></button>
+                        <button (click)="deleteProduct(product.id)" class="btn btn-danger  btn-permanent"><i
+                                class="fas fa-trash"></i></button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <AppPaginateComponent [currentPage]="currentPage" [lastPage]="lastPage" (pageChange)="changePage($event)">
+        </AppPaginateComponent>
+
+    </div>
+</div>

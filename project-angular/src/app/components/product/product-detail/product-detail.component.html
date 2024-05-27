@@ -1,0 +1,89 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-4">
+            <div class="mt-4">
+                <div *ngIf="isLoader">
+                    <div class="loader-overlay">
+                        <div class="loader">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="loading-text">Cargando.</div>
+                    </div>
+                </div>
+
+                <div *ngIf="!isLoader" class="card-body login-style">
+                    <h5 class="card-title text-center mb-5"><b>{{this.title}}</b></h5>
+                    
+                
+
+                    <form  id="form" #saveForm="ngForm">
+
+                        <div class="form-group">
+                            <label class="mb-2" for="name">Nombre</label>
+                            <input #name="ngModel" [(ngModel)]="product.name" required id="name" name="name"
+                                class="form-control" type="text" placeholder="Nombre" autocomplete="off" required
+                                [disabled]="disabled"
+                                >
+                            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                                El nombre no es valido
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-2" for="price">Precio:</label>
+                            <input #price="ngModel" [(ngModel)]="product.price" required id="price" name="price"
+                                type="text" class="form-control"  pattern="[0-9,.]+" placeholder="Precio" required
+                                [disabled]="disabled"
+                                >
+                                <small *ngIf="!price.valid && price.touched" class="invalid-feedback d-block">
+                                    El precio no es valido
+                                </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-2" for="price">Stock:</label>
+                            <input #stock="ngModel" [(ngModel)]="product.stock" required id="price" name="stock"
+                                type="text" class="form-control"  pattern="[0-9,.]+" placeholder="Stock" required
+                                [disabled]="disabled"
+                                >
+                                <small *ngIf="!stock.valid && stock.touched" class="invalid-feedback d-block">
+                                    El stock no es valido
+                                </small>
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <div *ngIf="case === 'e'">
+                                <button type="submit" class="btn btm-alegra btn-danger mt-2 py-2 px-4
+                                " [disabled]="saveForm.invalid" (click) = "onUpdate()"
+                                >Editar <i class="fas fa-edit"></i></button>
+                            </div>
+                            <div *ngIf="case === 'c'">
+                                <button type="submit" class="btn btm-alegra btn-danger mt-2 py-2 px-4
+                                " [disabled]="saveForm.invalid" (click) = "onCreate()"
+                                >Crear <i class="fas fa-plus"></i></button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+
+<style>
+    /*
+.btm-alegra {
+    background-color: #30aba9 !important;
+    color: #ffff;
+}
+
+.login-style {
+    border: 1px solid #30aba9;
+    padding: 11%;
+    border-radius: 10px;
+}
+*/
+</style>
