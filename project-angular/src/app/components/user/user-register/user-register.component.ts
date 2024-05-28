@@ -77,14 +77,14 @@ export class UserRegisterComponent implements OnInit {
       }
       response = response.data;
     }).catch(error => {
-      // Muestra una alerta con SweetAlert2 si hay un error en la solicitud
+
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Error al consutar cities, intente más tarde'
       });
       console.log('error-->', error);
-      this.isLoader = false; // Asegúrate de detener el loader en caso de error
+      this.isLoader = false;
     });
   }
 

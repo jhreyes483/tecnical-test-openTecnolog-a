@@ -109,7 +109,7 @@ export class ProductMainComponent implements OnInit {
         title: 'Error',
         text: 'Hubo un error al obtener los productos. Por favor, inténtelo de nuevo más tarde.'
       });
-      this.isLoader = false; // Asegúrate de detener el loader en caso de error
+      this.isLoader = false;
     });
   }
 }

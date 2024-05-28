@@ -55,7 +55,7 @@ export class UserLoginComponent {
 
 
       } else {
-        // Muestra una alerta con SweetAlert2 si hay un error
+
         Swal.fire({
           icon: 'error',
           title: 'Credenciales incorrectas',
@@ -64,13 +64,13 @@ export class UserLoginComponent {
       }
       response = response.data;
     }).catch(error => {
-      // Muestra una alerta con SweetAlert2 si hay un error en la solicitud
+
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Hubo un error al obtener los productos. Por favor, inténtelo de nuevo más tarde.'
       });
-      this.isLoader = false; // Asegúrate de detener el loader en caso de error
+      this.isLoader = false; 
 
     });
 
